@@ -1,0 +1,137 @@
+[4주차_알고리즘] javascript 구현.
+
+## 1번 문제
+### 자연수 뒤집어 배열로 만들기 > 연습문제
+
+###### (문제) <br> 
+자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요.<br> 
+      
+* n은 10,000,000,000이하자연수.
+          
+      function solution(n) {
+          return n.toString().split('').reverse().map(n => Number(n));
+      }
+      
+## 2번 문제
+### 정수 내림차순으로 배치하기 > 연습문제
+
+###### (문제) <br> 
+ 정수 n은 매개변수. n의 각 자릿수를 큰것부터 작은순으로 정렬한 새로운 정수를 리턴해주세요. <br> 
+ ex) 118372 -> 873211
+      
+* n은 1이상 ~ 8000000000이하 자연수.
+          
+      function solution(n) {
+          return Number(String(n).split('').sort((a,b) => b-a).join(""));
+      }
+      
+## 3번 문제
+### 행렬의 덧셈 > 연습문제
+
+###### (문제) <br> 
+ 행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수를 만드세요. <br> 
+      
+* 행렬 arr1,arr2의 행과 열의 길이는 500이 안넘음.
+          
+      function solution(arr1, arr2) {
+          return arr1.map((a, i) => a.map((b,j) => b + arr2[i][j]));
+      }     
+
+## 4번 문제
+### 정수 제곱근 판별 > 연습문제
+
+###### (문제) <br> 
+ 임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단해야된다. 양의 정수 x면 x+1의 제곱을 리턴, 아니라면 -1을 리턴하시오.<br> 
+      
+* n은 1이상 50000000000000 이하의 양의 정수.
+          
+      function solution(n) {
+          let square  = Math.sqrt(n);
+          return Number.isInteger(square) ? (square+1)* (square+1) : -1 ;
+      }
+
+## 5번 문제
+### 콜라츠 추측 > 연습문제
+
+###### (문제) <br> 
+ 행렬의 덧셈은 행과 열의 크기가 같은 두 행렬의 같은 행, 같은 값을 서로 더한 결과가 됩니다. 2개의 행렬 arr1과 arr2를 입력받아, 행렬 덧셈의 결과를 반환하는 함수를 만드세요. <br> 
+      
+* 행렬 arr1,arr2의 행과 열의 길이는 500이 안넘음.
+          
+      function solution(num) {
+          let i = 0;
+          while(i < 500 && num !== 1){
+              num =  (num % 2 === 0) ? num/2 : (num*3) +1;
+              i++;
+          }
+          return num === 1 ? i : -1;
+       }   
+
+## 6번 문제
+### 하샤드 수 > 연습문제
+
+###### (문제) <br> 
+ 양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다. 입력받은 수가 하샤드면 true 아니면 false 리턴하시오.<br> 
+      
+* x는 1 ~ 10000이하 정수.
+          
+      function solution(x) {
+          let sum  = 0;
+          x.toString().split('').map((a,i) => sum += Number(a));
+          return x % sum === 0;
+      } 
+
+## 7번 문제
+### 핸드폰 번호 가리기 > 연습문제
+
+###### (문제) <br> 
+ 전화번호 뒷 4자리를 제외하고 나머지는 *로 가린 문자열을 리턴하시오.<br> 
+      
+* phone_number는 4 ~ 20이하 문자열
+          
+      function solution(phone_number) {
+          return "*".repeat(phone_number.length - 4) + phone_number.split('').slice(phone_number.length-4,phone_number.length).join('');
+      }
+
+
+## 8번 문제
+### x만큼 간격이 있는 n개의 숫자 > 연습문제
+
+###### (문제) <br> 
+ 정수 x와 자연수 n을 입력받아, x부터 시작해 x씩 증가하는 숫자를 n개 지니는 리스트를 리턴하시오.<br> 
+      
+* x는 -10000000 이상 10000000이하 정수.
+* n은 1000 이하 자연수.
+          
+      function solution(x, n) {
+          let answer = [];
+          let sum = x;
+          while(answer.length < n){
+              answer.push(sum);
+              sum = sum + x;
+          }
+          return answer;
+      }
+      
+## 9번 문제
+### 직사각형 별찍기 > 연습문제
+
+###### (문제) <br> 
+  두개의 정수 n과 m이 주어진다. *문자를 이용해 가로가 n 세로가 m인 직사각형 형태 출력하시오.<br> 
+      
+* n과 m은 각각 1000 이하 자연수.
+          
+      process.stdin.setEncoding('utf8');
+      process.stdin.on('data', data => {
+        const n = data.split(" ");
+        const a = Number(n[0]), b = Number(n[1]);
+        let star = "*".repeat(a);
+        console.log(star);
+        let i=1;
+        while(i <  b){
+            console.log(star);
+            i++;
+        }
+    });  
+      
+      
